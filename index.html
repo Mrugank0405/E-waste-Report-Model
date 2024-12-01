@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linear Regression on E-Waste Data</title>
+    <!-- Include Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <h1>City-wise E-Waste Prediction</h1>
+
+    <!-- Dropdown for City Selection -->
+    <label for="city">Select a City:</label>
+    <select id="city">
+        <option value="" disabled selected>Select a city</option>
+        <option value="Ahmedabad">Ahmedabad</option>
+        <option value="Bengaluru">Bengaluru</option>
+        <option value="Chennai">Chennai</option>
+        <option value="Delhi">Delhi</option>
+        <option value="Hyderabad">Hyderabad</option>
+        <option value="Kolkata">Kolkata</option>
+        <option value="Mumbai">Mumbai</option>
+        <option value="Pune">Pune</option>
+        <option value="Vijayawada">Vijayawada</option>
+        <option value="Warangal">Warangal</option>
+        <option value="Greater Vishakhapatnam">Greater Vishakhapatnam</option>
+        <option value="Guntur">Guntur</option>
+        <option value="Nellore">Nellore</option>
+        <option value="Guwahati">Guwahati</option>
+        <option value="Chandigarh">Chandigarh</option>
+        <option value="S.A.S. Nagar">S.A.S. Nagar</option>
+        <option value="Mohali">Mohali</option>
+        <option value="Durg-Bhilai Nagar">Durg-Bhilai Nagar</option>
+        <option value="Raipur">Raipur</option>
+        <option value="Rajkot">Rajkot</option>
+        <option value="Jamnagar">Jamnagar</option>
+        <option value="Bhavnagar">Bhavnagar</option>
+        <option value="Vadodara">Vadodara</option>
+        <option value="Faridabad">Faridabad</option>
+        <option value="Gurgaon/Gurugram">Gurgaon/Gurugram</option>
+        <option value="Srinagar">Srinagar</option>
+        <option value="Jammu">Jammu</option>
+        <option value="Jamshedpur">Jamshedpur</option>
+        <option value="Dhanbad">Dhanbad</option>
+        <option value="Ranchi">Ranchi</option>
+        <option value="Bokaro Steel City">Bokaro Steel City</option>
+        <option value="Belgaum">Belgaum</option>
+        <option value="Hubli-Dharwad">Hubli-Dharwad</option>
+        <option value="Mangalore">Mangalore</option>
+        <option value="Mysore">Mysore</option>
+        <option value="Gulbarga">Gulbarga</option>
+        <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+        <option value="Thrissur">Thrissur</option>
+        <option value="Malappuram">Malappuram</option>
+        <option value="Kannur">Kannur</option>
+        <option value="Kollam">Kollam</option>
+        <option value="Gwalior">Gwalior</option>
+        <option value="Bhopal">Bhopal</option>
+        <option value="Jabalpur">Jabalpur</option>
+        <option value="Ujjain">Ujjain</option>
+        <option value="Amravati">Amravati</option>
+        <option value="Aurangabad">Aurangabad</option>
+        <option value="Nashik">Nashik</option>
+        <option value="Bhiwandi">Bhiwandi</option>
+        <option value="Solapur">Solapur</option>
+        <option value="Kolhapur">Kolhapur</option>
+        <option value="Vasai-Virar City">Vasai-Virar City</option>
+        <option value="Malegaon">Malegaon</option>
+        <option value="Nanded-Vaghela">Nanded-Vaghela</option>
+        <option value="Sangli">Sangli</option>
+        <option value="Cuttack">Cuttack</option>
+        <option value="Bhubaneswar">Bhubaneswar</option>
+        <option value="Raurkela">Raurkela</option>
+        <option value="Pondicherry/Puducherry">Pondicherry/Puducherry</option>
+        <option value="Amritsar">Amritsar</option>
+        <option value="Jalandhar">Jalandhar</option>
+        <option value="Ludhiana">Ludhiana</option>
+        <option value="Bikaner">Bikaner</option>
+        <option value="Jodhpur">Jodhpur</option>
+        <option value="Kota">Kota</option>
+        <option value="Ajmer">Ajmer</option>
+        <option value="Salem">Salem</option>
+        <option value="Tiruppur">Tiruppur</option>
+        <option value="Tiruchirappalli">Tiruchirappalli</option>
+        <option value="Madurai">Madurai</option>
+        <option value="Erode">Erode</option>
+        <option value="Moradabad">Moradabad</option>
+        <option value="Meerut">Meerut</option>
+        <option value="Aligarh">Aligarh</option>
+        <option value="Agra">Agra</option>
+        <option value="Bareilly">Bareilly</option>
+        <option value="Allahabad">Allahabad</option>
+        <option value="Gorakhpur">Gorakhpur</option>
+        <option value="Varanasi">Varanasi</option>
+        <option value="Saharanpur">Saharanpur</option>
+        <option value="Noida">Noida</option>
+        <option value="Firozabad">Firozabad</option>
+        <option value="Jhansi">Jhansi</option>
+        <option value="Dehradun">Dehradun</option>
+        <option value="Asansol">Asansol</option>
+        <option value="Siliguri">Siliguri</option>
+        <option value="Durgapur">Durgapur</option>
+        <option value="Etawah">Etawah</option>
+        <option value="Roorkee">Roorkee</option>
+        <option value="Rajahmundry">Rajahmundry</option>
+        <option value="Bhatinda">Bhatinda</option>
+        <option value="Hajipur">Hajipur</option>
+        <option value="Kanpur">Kanpur</option>
+        <option value="Gwalior">Gwalior</option>
+        <option value="Rohtak">Rohtak</option>
+        <option value="Gandhinagar">Gandhinagar</option>
+        <option value="Udaipur">Udaipur</option>
+        <option value="Nashik">Nashik</option>
+        <option value="Nagpur">Nagpur</option>
+        <option value="Mangalore">Mangalore</option>
+        <option value="Kochi">Kochi</option>
+        <option value="Madurai">Madurai</option>
+        <option value="Mathura">Mathura</option>
+        <option value="Shimla">Shimla</option>
+    </select>
+
+    <!-- Generate Button -->
+    <button id="generate">Generate Prediction</button>
+
+    <!-- Results Section -->
+    <div id="results"></div>
+
+    <!-- Chart Container -->
+    <!-- Chart Container with Resized Canvas -->
+    <div id="chart-container" style="width: 500px; height: 300px;">
+        <canvas id="ewasteChart" width="500" height="300"></canvas>
+    </div>
+
+
+
+    <script defer src="scripts.js"></script>
+
+</body>
+
+</html>
